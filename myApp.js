@@ -1,11 +1,19 @@
-const express = require('express');
-const app = express();
+import express from 'express'
+let app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello Express');
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html");
 });
 
-console.log('Hello World');
+app.get("/json", (req, res) => {
+    res.json({
+        message: "Hello json"
+    });
+});
+
+app.use("/public", express.static(__dirname + "/public"));
+
+// console.log('Hello World');
 
 
 
@@ -44,4 +52,4 @@ console.log('Hello World');
 
 
 
- module.exports = app;
+ export default app;
